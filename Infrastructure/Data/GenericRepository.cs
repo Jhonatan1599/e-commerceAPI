@@ -46,6 +46,22 @@ namespace Infrastructure.Data
 
         }
 
+        public void Add(T entity)
+        {
+            _context.Set<T>().Add(entity);
+        }
 
+        public void Update(T entity)
+        {   
+            // Tracking the entity
+            _context.Set<T>().Attach(entity);
+            // set the state to modified
+            _context.Entry(entity).State = EntityState.Modified;
+        }
+
+        public void Delete(T entity)
+        {
+            _context.Set<T>().Remove(entity);
+        }
     }
 }
