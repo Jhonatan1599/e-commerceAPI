@@ -1,13 +1,24 @@
 using Core.Entities;
 
 namespace Core.Interfaces
-{   
+{
     //IDisposable: when we've finished, our transaction is going to dispose of our context 
+    /// <summary>
+    /// Represents a unit of work for managing database operations.
+    /// </summary>
     public interface IUnitOfWork : IDisposable
     {
+        /// <summary>
+        /// Gets the repository instance for the specified entity type.
+        /// </summary>
+        /// <typeparam name="TEntity">The type of entity.</typeparam>
+        /// <returns>The repository instance for the specified entity type.</returns>
         IGenericRepository<TEntity> Repository<TEntity>() where TEntity : BaseEntity;
 
-        //returns the number of changes to our database
+        /// <summary>
+        /// Saves all changes made within the unit of work to the database.
+        /// </summary>
+        /// <returns>A task representing the asynchronous operation. The task result represents the number of changes made to the database.</returns>
         Task<int> Complete();
     }
 }

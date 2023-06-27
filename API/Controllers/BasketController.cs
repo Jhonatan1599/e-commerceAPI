@@ -17,6 +17,11 @@ namespace API.Controllers
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Get basket by Id 
+        /// </summary>
+        /// <param name="id">The basket Id</param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult<CustomerBasket>> GetBasketById(string id)
         {
@@ -25,6 +30,11 @@ namespace API.Controllers
             return Ok(basket ?? new CustomerBasket(id));
         }
 
+        /// <summary>
+        /// Creates/Updates a basket
+        /// </summary>
+        /// <param name="basket">The basket to create/update</param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult<CustomerBasket>> UpdateBasket(CustomerBasketDto basket)
         {   
@@ -34,6 +44,11 @@ namespace API.Controllers
             return Ok(updatedBasket);
         }
         
+        /// <summary>
+        /// Deletes a basket
+        /// </summary>
+        /// <param name="id">The Id of the basket to delete</param>
+        /// <returns></returns>
         [HttpDelete]
         public async Task DeleteBasket(string id)
         {

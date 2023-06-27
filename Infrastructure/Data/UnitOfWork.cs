@@ -4,37 +4,48 @@ using Core.Interfaces;
 
 namespace Infrastructure.Data 
 {
+    /// <summary>
+    /// Represents a unit of work implementation for managing database operations.
+    /// </summary>
     public class UnitOfWork : IUnitOfWork
     {
         private readonly StoreContext _context;
 
-        /*Now, as we initialize a unit of work, we cannot create a new instance of our StoreContext and any 
-        repositories that we use inside this unit of work are going to be stored inside this Hashtable.*/
-
-        //the key represents the entity type name, and the value represents the repository instance.
+        
+        /// <summary>
+        /// A Hashtable to store the entity type name and the repository instance as a key/value
+        /// </summary>
         private Hashtable _repositories;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UnitOfWork"/> class with the specified context.
+        /// </summary>
+        /// <param name="context">The database context.</param>
         public UnitOfWork(StoreContext context)
         {
             _context = context;
         }
 
-        /*save the changes made in the _context by calling _context.SaveChangesAsync(). 
-        It returns a Task<int> representing the number of affected entities.*/
+        
+        /// <summary>
+        /// Saves all changes made within the unit of work to the database.
+        /// </summary>
+        /// <returns>The task result represents the number of changes made to the database.</returns>
         public async Task<int> Complete()
         {
             return await _context.SaveChangesAsync();
         }
 
-        //The Dispose() method is used to clean up and dispose of resources associated with the _context.
-        //This method inherits from IDisposable
+        
+        /// <summary>
+        /// Releases all resources used by the unit of work. This method inherits from <see cref="IDisposable"/>.
+        /// </summary>
         public void Dispose()
         {
             _context.Dispose();
         }
 
-        //This method is responsible for providing the repositories associated with different entity types.
-        //Returns a new instance of IGenericRepository<TEntity>
+
         public IGenericRepository<TEntity> Repository<TEntity>() where TEntity : BaseEntity
         {
             if(_repositories == null) _repositories = new Hashtable();
@@ -44,12 +55,12 @@ namespace Infrastructure.Data
             //Checks if _repositories already contains a repository with this particular type
             if(!_repositories.ContainsKey(type))
             {   
-                // Create a open generic type of GenericRepository<>
+                // Creates an open generic type of GenericRepository<>
                 var repositoryType = typeof(GenericRepository<>);
 
                 //This creates a new instance of GenericRepository<TEntity> with _context as its constructor argument.
                 var repositoryInstance = Activator.CreateInstance(
-                    /*This part generates a closed generic type based on the open generic type GenericRepository<> and the type TEntity-->*/
+                    /*This part generates a closed generic type based on the open generic type GenericRepository<> and the  TEntity type */
                     repositoryType.MakeGenericType(typeof(TEntity)), 
                     _context );
                 

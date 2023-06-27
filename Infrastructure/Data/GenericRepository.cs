@@ -4,11 +4,19 @@ using Core.Specifications;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data
-{
+{   
+    /// <summary>
+    /// Represents a generic repository
+    /// </summary>
+    /// <typeparam name="T">The type of the entity</typeparam>
     public class GenericRepository<T> : IGenericRepository<T> where T :BaseEntity
     {
         private readonly StoreContext _context;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GenericRepository{T}"/>
+        /// </summary>
+        /// <param name="context">The database context</param>
         public GenericRepository(StoreContext context)
         {
             _context = context;
@@ -19,22 +27,23 @@ namespace Infrastructure.Data
             return await _context.Set<T>().FindAsync(id);
         }
 
-
         public async Task<IReadOnlyList<T>> ListAllAsync()
         {
             return await _context.Set<T>().ToListAsync();
         }
-    
+
         public async Task<T> GetEntityWithSpec(ISpecification<T> spec)
         {   
             //Applying the specification pattern and getting the entity
             return await ApplySpecification(spec).FirstOrDefaultAsync();
         }
+
         public async Task<IReadOnlyList<T>> ListAsync(ISpecification<T> spec)
         {
              return await ApplySpecification(spec).ToListAsync();
         }
-        
+
+   
         public async Task<int> CountAsync(ISpecification<T> spec)
         {
             return await ApplySpecification(spec).CountAsync();
@@ -45,7 +54,6 @@ namespace Infrastructure.Data
             return SpecificationEvaluator<T>.GetQuery(_context.Set<T>().AsQueryable(), spec );
 
         }
-
         public void Add(T entity)
         {
             _context.Set<T>().Add(entity);

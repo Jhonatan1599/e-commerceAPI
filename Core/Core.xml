@@ -1,0 +1,353 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Core</name>
+    </assembly>
+    <members>
+        <member name="T:Core.Entities.BaseEntity">
+            <summary>
+            Base class for the entities
+            </summary>
+        </member>
+        <member name="T:Core.Entities.CustomerBasket">
+            <summary>
+            A class that represents a basket of products for a user 
+            </summary>
+        </member>
+        <member name="M:Core.Entities.CustomerBasket.#ctor(System.String)">
+            <summary>
+            Initialize a CustomerBasket with an string Id 
+            </summary>
+            <param name="id">The Id Of the basket</param>
+        </member>
+        <member name="P:Core.Entities.CustomerBasket.Id">
+            <summary>
+            The Id Of the basket
+            </summary>
+        </member>
+        <member name="P:Core.Entities.CustomerBasket.Items">
+            <summary>
+            A set of Items, each item is a product
+            </summary>
+        </member>
+        <member name="T:Core.Entities.OrderAggregate.DeliveryMethod">
+            <summary>
+            A class that represents a Delivery method
+            </summary>
+        </member>
+        <member name="T:Core.Entities.OrderAggregate.ProductItemOrdered">
+            <summary>
+            A class that represents an item ordered by a user
+            </summary>
+        </member>
+        <member name="P:Core.Entities.OrderAggregate.ProductItemOrdered.ProductItemId">
+            <summary>
+            Id of the product
+            </summary>
+        </member>
+        <member name="P:Core.Entities.OrderAggregate.ProductItemOrdered.ProductName">
+            <summary>
+            Name of the product
+            </summary>
+        </member>
+        <member name="P:Core.Entities.OrderAggregate.ProductItemOrdered.PictureUrl">
+            <summary>
+            Url of the product
+            </summary>
+        </member>
+        <member name="T:Core.Entities.Product">
+            <summary>
+            Represents a product entity
+            </summary>
+        </member>
+        <member name="T:Core.Entities.ProductBrand">
+            <summary>
+            Represent a brand of a product
+            </summary>
+        </member>
+        <member name="T:Core.Entities.ProductType">
+            <summary>
+            Represents a type of a Product
+            </summary>
+        </member>
+        <member name="T:Core.Interfaces.IBasketRepository">
+            <summary>
+            An interface that defines a Basket
+            </summary>
+        </member>
+        <member name="M:Core.Interfaces.IBasketRepository.GetBasketAsync(System.String)">
+            <summary>
+            Get basket by Id
+            </summary>
+            <param name="basketId">The basket Id</param>
+            <returns>A basket of products</returns>
+        </member>
+        <member name="M:Core.Interfaces.IBasketRepository.UpdateBasketAsync(Core.Entities.CustomerBasket)">
+            <summary>
+            Creates/Updates a basket
+            </summary>
+            <param name="basket">A basket of products</param>
+            <returns>A basket of products</returns>
+        </member>
+        <member name="M:Core.Interfaces.IBasketRepository.DeleteBasketAsync(System.String)">
+            <summary>
+            Deletes a basket
+            </summary>
+            <param name="basketId">The id of the basket</param>
+            <returns>A boolean</returns>
+        </member>
+        <member name="T:Core.Interfaces.IGenericRepository`1">
+            <summary>
+            Represent a generic repository interface 
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Core.Interfaces.IGenericRepository`1.GetByIdAsync(System.Int32)">
+            <summary>
+            Retrieves an entity by its Id
+            </summary>
+            <param name="id">The Id Of the entity</param>
+            <returns>A entity. </returns>
+        </member>
+        <member name="M:Core.Interfaces.IGenericRepository`1.ListAllAsync">
+            <summary>
+            Retrieves all the entities
+            </summary>
+            <returns>A list of entities</returns>
+        </member>
+        <member name="M:Core.Interfaces.IGenericRepository`1.GetEntityWithSpec(Core.Specifications.ISpecification{`0})">
+            <summary>
+            Retrieves an entity with a specific specification.
+            </summary>
+            <param name="spec">The specification to filter the entity.</param>
+            <returns>An entity.</returns>
+        </member>
+        <member name="M:Core.Interfaces.IGenericRepository`1.ListAsync(Core.Specifications.ISpecification{`0})">
+            <summary>
+            Retrieves a list of entities, each one with their specification.
+            </summary>
+            <param name="spec">The specification to filter the entities</param>
+            <returns>A list of entities</returns>
+        </member>
+        <member name="M:Core.Interfaces.IGenericRepository`1.CountAsync(Core.Specifications.ISpecification{`0})">
+            <summary>
+            Counts the entities based on a specification
+            </summary>
+            <param name="spec">The specification to filter the entities</param>
+            <returns>Total of entities counted</returns>
+        </member>
+        <member name="M:Core.Interfaces.IGenericRepository`1.Add(`0)">
+            <summary>
+            Adds an entity
+            </summary>
+            <param name="entity">The entity to add.</param>
+        </member>
+        <member name="M:Core.Interfaces.IGenericRepository`1.Update(`0)">
+            <summary>
+            Updates an entity
+            </summary>
+            <param name="entity">The entity to update.</param>
+        </member>
+        <member name="M:Core.Interfaces.IGenericRepository`1.Delete(`0)">
+            <summary>
+            Deletes an entity.
+            </summary>
+            <param name="entity">The entity to delete.</param>
+        </member>
+        <member name="M:Core.Interfaces.IOrderService.CreateOrderAsync(System.String,System.Int32,System.String,Core.Entities.OrderAggregate.Address)">
+            <summary>
+            Creates an order
+            </summary>
+            <param name="buyerEmail">The email of the Client</param>
+            <param name="deliveryMethod">The delivery method</param>
+            <param name="basketId">The id of the basket</param>
+            <param name="shippingAddress">An object that contains info related to the Address</param>
+            <returns></returns>
+        </member>
+        <member name="M:Core.Interfaces.IOrderService.GetOrdersForUserAsync(System.String)">
+            <summary>
+            Get the Orders of a user
+            </summary>
+            <param name="buyerEmail">the buyer email</param>
+            <returns>A list of Orders</returns>
+        </member>
+        <member name="M:Core.Interfaces.IOrderService.GetOrderByIdAsync(System.Int32,System.String)">
+            <summary>
+            Get the Order of a user 
+            </summary>
+            <param name="id">The id of the order</param>
+            <param name="buyerEmail">The email of the user</param>
+            <returns></returns>
+        </member>
+        <member name="M:Core.Interfaces.IOrderService.GetDeliveryMethodsAync">
+            <summary>
+            Get a list of available delivery methods
+            </summary>
+            <returns>A list of delivery methods</returns>
+        </member>
+        <member name="T:Core.Interfaces.IUnitOfWork">
+            <summary>
+            Represents a unit of work for managing database operations.
+            </summary>
+        </member>
+        <member name="M:Core.Interfaces.IUnitOfWork.Repository``1">
+            <summary>
+            Gets the repository instance for the specified entity type.
+            </summary>
+            <typeparam name="TEntity">The type of entity.</typeparam>
+            <returns>The repository instance for the specified entity type.</returns>
+        </member>
+        <member name="M:Core.Interfaces.IUnitOfWork.Complete">
+            <summary>
+            Saves all changes made within the unit of work to the database.
+            </summary>
+            <returns>A task representing the asynchronous operation. The task result represents the number of changes made to the database.</returns>
+        </member>
+        <member name="T:Core.Specifications.BaseSpecification`1">
+            <summary>
+             Represents a specification class for querying entities
+            </summary>
+            <typeparam name="T">The type of the entity</typeparam>
+        </member>
+        <member name="M:Core.Specifications.BaseSpecification`1.#ctor">
+            <summary>
+            Initializes a new instance of <see cref="T:Core.Specifications.BaseSpecification`1"/>
+            </summary>
+        </member>
+        <member name="M:Core.Specifications.BaseSpecification`1.#ctor(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Initializes a new instance of  <see cref="T:Core.Specifications.BaseSpecification`1"/>
+            </summary>
+            <param name="criteria">The criteria expression used to filter entities.</param>
+        </member>
+        <member name="M:Core.Specifications.BaseSpecification`1.AddInclude(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+            <summary>
+            Adds an include expression to include related entities.
+            </summary>
+            <param name="includeExpression">The expression used to include related entities</param>
+        </member>
+        <member name="M:Core.Specifications.BaseSpecification`1.AddOrderBy(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+            <summary>
+            Adds an expression to specify the ordering of entities in ascending order.
+            </summary>
+            <param name="orderByExpression">The expression used to specify the ordering of entities.</param>
+        </member>
+        <member name="M:Core.Specifications.BaseSpecification`1.AddOrderByDescending(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+            <summary>
+            Adds an expression to specify the ordering of entities in descending order.
+            </summary>
+            <param name="orderByDescExpression">The expression used to specify the ordering of entities in descending order</param>
+        </member>
+        <member name="M:Core.Specifications.BaseSpecification`1.ApplyPaging(System.Int32,System.Int32)">
+            <summary>
+            Applies paging to the query.
+            </summary>
+            <param name="skip">The number of entities to skip.</param>
+            <param name="take">The maximum number of entities to take.</param>
+        </member>
+        <member name="T:Core.Specifications.ISpecification`1">
+            <summary>
+            Represents a specification interface for querying entities.
+            </summary>
+            <typeparam name="T">The type of the entity</typeparam>
+        </member>
+        <member name="P:Core.Specifications.ISpecification`1.Criteria">
+            <summary>
+            Gets the criteria expression used to filter entities.
+            </summary>
+        </member>
+        <member name="P:Core.Specifications.ISpecification`1.Includes">
+            <summary>
+            Gets a list of expressions used to include related entities.
+            </summary>
+        </member>
+        <member name="P:Core.Specifications.ISpecification`1.OrderBy">
+            <summary>
+            Gets the expression used to specify the ordering of entities in ascend order.
+            </summary>
+        </member>
+        <member name="P:Core.Specifications.ISpecification`1.OrderByDescending">
+            <summary>
+            Gets the expression used to specify the ordering of entities in descent order.
+            </summary>
+        </member>
+        <member name="P:Core.Specifications.ISpecification`1.Take">
+            <summary>
+            Gets the maximum number of entities to take.
+            </summary>
+        </member>
+        <member name="P:Core.Specifications.ISpecification`1.Skip">
+            <summary>
+            Gets the number of entities to skip.
+            </summary>
+        </member>
+        <member name="P:Core.Specifications.ISpecification`1.IsPagingEnabled">
+            <summary>
+            Gets a value indicating whether paging is enabled.
+            </summary>
+        </member>
+        <member name="T:Core.Specifications.ProductSpecParams">
+            <summary>
+            Represents the parameters used for filtering and pagination when querying products.
+            </summary>
+        </member>
+        <member name="P:Core.Specifications.ProductSpecParams.PageIndex">
+            <summary>
+            The index of the page to retrieve.
+            </summary>
+        </member>
+        <member name="P:Core.Specifications.ProductSpecParams.PageSize">
+            <summary>
+            The number of products per page.
+            </summary>
+        </member>
+        <member name="P:Core.Specifications.ProductSpecParams.BrandId">
+            <summary>
+            Filter Products by brand
+            </summary>
+        </member>
+        <member name="P:Core.Specifications.ProductSpecParams.TypeId">
+            <summary>
+            Filter Products by type
+            </summary>
+        </member>
+        <member name="P:Core.Specifications.ProductSpecParams.Sort">
+            <summary>
+            Sort products by price e.j priceAsc or priceDesc
+            </summary>
+        </member>
+        <member name="P:Core.Specifications.ProductSpecParams.Search">
+            <summary>
+            Search Products by name.
+            </summary>
+        </member>
+        <member name="T:Core.Specifications.ProductsWithTypesAndBrandsSpecification">
+            <summary>
+            Represents a specification for querying products with their associated types and brands.
+            </summary>
+        </member>
+        <member name="M:Core.Specifications.ProductsWithTypesAndBrandsSpecification.#ctor(Core.Specifications.ProductSpecParams)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Core.Specifications.ProductsWithTypesAndBrandsSpecification"/> class with the specified product parameters.
+            </summary>
+            <param name="productParams">The product parameters used for filtering, sorting, and pagination.</param>
+        </member>
+        <member name="M:Core.Specifications.ProductsWithTypesAndBrandsSpecification.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Core.Specifications.ProductsWithTypesAndBrandsSpecification"/> class with the specified product ID.
+            </summary>
+            <param name="id">The ID of the product to retrieve.</param>
+        </member>
+        <member name="T:Core.Specifications.ProductWithFiltersForCountSpecification">
+            <summary>
+            Represents a specification for counting the number of products with filters applied.
+            </summary>
+        </member>
+        <member name="M:Core.Specifications.ProductWithFiltersForCountSpecification.#ctor(Core.Specifications.ProductSpecParams)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Core.Specifications.ProductWithFiltersForCountSpecification"/> class with the specified product parameters.
+            </summary>
+            <param name="productParams">The product parameters used for filtering, sorting, and pagination.</param>
+        </member>
+    </members>
+</doc>

@@ -10,7 +10,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
-{
+{   
+  
     public class AccountController : BaseApiController
     {
         private readonly UserManager<AppUser> _userManager;
@@ -27,11 +28,15 @@ namespace API.Controllers
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Gets the current logged in user
+        /// </summary>
+        /// <returns>An action result that contains the user info</returns>
         [Authorize]
         [HttpGet]
         public async Task<ActionResult<UserDto>> GetCurrentUser()
         {
-
+            // Find user by email
             var user = await _userManager.FindByEmailByClaimsPrincipal(User);
 
             return new UserDto
@@ -42,20 +47,39 @@ namespace API.Controllers
             };
         }
 
+        /// <summary>
+        /// Verifies if the email is already registered
+        /// </summary>
+        /// <param name="email">An email to check out</param>
+        /// <returns>A boolean</returns>
         [HttpGet("emailexists")]
         public async Task<ActionResult<bool>> CheckEmailExistsAsync([FromQuery] string email)
         {
             return await _userManager.FindByEmailAsync(email) != null;
         }
 
+        /// <summary>
+        /// Gets the address of the current logged in user
+        /// </summary>
+        /// <returns>An ActionResult that contains the address of the current user</returns>
         [Authorize]
         [HttpGet("address")]
-        public async Task<ActionResult<AddressDto>> GetUserAddres()
+        public async Task<ActionResult<AddressDto>> GetUserAddress()
         {
             var user = await _userManager.FindUserByClaimsPrincipleWithAddress(User);
+
+            if (user.Address == null)
+            {
+                return Ok("The user has not filled his address"); }
+
             return  _mapper.Map<Address, AddressDto>(user.Address);
         }
 
+        /// <summary>
+        /// Updated the user address of a current logged in user
+        /// </summary>
+        /// <param name="addressDto">The user address information</param>
+        /// <returns>An ActionResult that contains the address of the user</returns>
         [Authorize]
         [HttpPut("address")]
         public async Task<ActionResult<AddressDto>> UpdateUserAddress(AddressDto addressDto)
@@ -71,7 +95,11 @@ namespace API.Controllers
             return BadRequest("Problem updating the user");
         }
 
-
+        /// <summary>
+        /// Log-in 
+        /// </summary>
+        /// <param name="loginDto">The information of a user to log in</param>
+        /// <returns></returns>
         [HttpPost("login")]
         public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
@@ -94,6 +122,11 @@ namespace API.Controllers
             };
         }
 
+        /// <summary>
+        /// Sign up
+        /// </summary>
+        /// <param name="registerDto">The information of a user to sign up</param>
+        /// <returns></returns>
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {   

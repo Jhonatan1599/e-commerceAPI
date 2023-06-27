@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Infrastructure</name>
+    </assembly>
+    <members>
+        <member name="T:Infrastructure.Data.GenericRepository`1">
+            <summary>
+            Represents a generic repository
+            </summary>
+            <typeparam name="T">The type of the entity</typeparam>
+        </member>
+        <member name="M:Infrastructure.Data.GenericRepository`1.#ctor(Infrastructure.Data.StoreContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infrastructure.Data.GenericRepository`1"/>
+            </summary>
+            <param name="context">The database context</param>
+        </member>
+        <member name="T:Infrastructure.Data.Migrations.Postgresinitial">
+            <inheritdoc />
+        </member>
+        <member name="M:Infrastructure.Data.Migrations.Postgresinitial.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Infrastructure.Data.Migrations.Postgresinitial.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Infrastructure.Data.Migrations.Postgresinitial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Infrastructure.Data.SpecificationEvaluator`1">
+            <summary>
+            Provides a mechanism to evaluate specifications and retrieve the corresponding query.
+            </summary>
+            <typeparam name="TEntity">The type of entity the specification applies to.</typeparam>
+        </member>
+        <member name="M:Infrastructure.Data.SpecificationEvaluator`1.GetQuery(System.Linq.IQueryable{`0},Core.Specifications.ISpecification{`0})">
+            <summary>
+            Gets the query resulting from applying the given specification to the input query.
+            </summary>
+            <param name="inputQuery">The input query to apply the specification to.</param>
+            <param name="spec">The specification to apply.</param>
+            <returns>The resulting query after applying the specification.</returns>
+        </member>
+        <member name="T:Infrastructure.Data.UnitOfWork">
+            <summary>
+            Represents a unit of work implementation for managing database operations.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Data.UnitOfWork._repositories">
+            <summary>
+            A Hashtable to store the entity type name and the repository instance as a key/value
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Data.UnitOfWork.#ctor(Infrastructure.Data.StoreContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infrastructure.Data.UnitOfWork"/> class with the specified context.
+            </summary>
+            <param name="context">The database context.</param>
+        </member>
+        <member name="M:Infrastructure.Data.UnitOfWork.Complete">
+            <summary>
+            Saves all changes made within the unit of work to the database.
+            </summary>
+            <returns>The task result represents the number of changes made to the database.</returns>
+        </member>
+        <member name="M:Infrastructure.Data.UnitOfWork.Dispose">
+            <summary>
+            Releases all resources used by the unit of work. This method inherits from <see cref="T:System.IDisposable"/>.
+            </summary>
+        </member>
+        <member name="T:Infrastructure.Identity.Migrations.Identityinitial">
+            <inheritdoc />
+        </member>
+        <member name="M:Infrastructure.Identity.Migrations.Identityinitial.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Infrastructure.Identity.Migrations.Identityinitial.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Infrastructure.Identity.Migrations.Identityinitial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

@@ -20,20 +20,23 @@ namespace Infrastructure.Services
         public async Task<Order> CreateOrderAsync(string buyerEmail, int deliveryMethodId, string basketId,
              Address shippingAddress)
         {
-            // get basket from the repo
+            // get basket 
             var basket = await _basketRepo.GetBasketAsync(basketId);
 
-            // get items from the product repo
+            // create a list of items  
             var items = new List<OrderItem>();
             foreach(var item in basket.Items)
             {
+                // get the product
                 var productItem = await _unitOfWork.Repository<Product>().GetByIdAsync(item.Id);
+                // creates an object of  order Items
                 var itemOrdered = new ProductItemOrdered(productItem.Id, productItem.Name, productItem.PictureUrl);
                 var orderItem = new OrderItem(itemOrdered, productItem.Price, item.Quantity);
+                // add to the list of items
                 items.Add(orderItem);
             }
 
-            // get delivery methid from repo
+            // get delivery method from repo
             var deliveryMethod = await _unitOfWork.Repository<DeliveryMethod>().GetByIdAsync(deliveryMethodId);
 
             // calc subtotal

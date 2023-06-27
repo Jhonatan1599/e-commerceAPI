@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>API</name>
+    </assembly>
+    <members>
+        <member name="M:API.Controllers.AccountController.GetCurrentUser">
+            <summary>
+            Gets the current logged in user
+            </summary>
+            <returns>An action result that contains the user info</returns>
+        </member>
+        <member name="M:API.Controllers.AccountController.CheckEmailExistsAsync(System.String)">
+            <summary>
+            Verifies if the email is already registered
+            </summary>
+            <param name="email">An email to check out</param>
+            <returns>A boolean</returns>
+        </member>
+        <member name="M:API.Controllers.AccountController.GetUserAddress">
+            <summary>
+            Gets the address of the current logged in user
+            </summary>
+            <returns>An ActionResult that contains the address of the current user</returns>
+        </member>
+        <member name="M:API.Controllers.AccountController.UpdateUserAddress(API.Dtos.AddressDto)">
+            <summary>
+            Updated the user address of a current logged in user
+            </summary>
+            <param name="addressDto">The user address information</param>
+            <returns>An ActionResult that contains the address of the user</returns>
+        </member>
+        <member name="M:API.Controllers.AccountController.Login(API.Controllers.LoginDto)">
+            <summary>
+            Log-in 
+            </summary>
+            <param name="loginDto">The information of a user to log in</param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.AccountController.Register(API.Dtos.RegisterDto)">
+            <summary>
+            Sign up
+            </summary>
+            <param name="registerDto">The information of a user to sign up</param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.BasketController.GetBasketById(System.String)">
+            <summary>
+            Get basket by Id 
+            </summary>
+            <param name="id">The basket Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.BasketController.UpdateBasket(API.Dtos.CustomerBasketDto)">
+            <summary>
+            Creates/Updates a basket
+            </summary>
+            <param name="basket">The basket to create/update</param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.BasketController.DeleteBasket(System.String)">
+            <summary>
+            Deletes a basket
+            </summary>
+            <param name="id">The Id of the basket to delete</param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.OrdersController.CreateOrder(API.Dtos.OrderDto)">
+            <summary>
+            Creates an Order of a current logged in user
+            </summary>
+            <param name="orderDto">An object that contains info about the order</param>
+            <returns>The order</returns>
+        </member>
+        <member name="M:API.Controllers.OrdersController.GetOrdersForUser">
+            <summary>
+            Retrieves the orders of a current logged in user
+            </summary>
+            <returns>An ActionResult of a list of Orders</returns>
+        </member>
+        <member name="M:API.Controllers.OrdersController.GetOrderByIdForUser(System.Int32)">
+            <summary>
+            Retrieves an order of a current logged in user by Id
+            </summary>
+            <param name="id">The Id Of the order</param>
+            <returns>An order</returns>
+        </member>
+        <member name="M:API.Controllers.OrdersController.GetDeliveryMethods">
+            <summary>
+            Retrieves a list of delivery methods, the user must log-in
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.ProductsController.GetProducts(Core.Specifications.ProductSpecParams)">
+            <summary>
+            Retrieves a paginated list of products based on the specified parameters.
+            </summary>
+            <param name="productParams">The parameters for filtering, sorting, and paging the products.</param>
+            <returns>An ActionResult containing the paginated list of products.</returns>
+        </member>
+        <member name="M:API.Controllers.ProductsController.GetProduct(System.Int32)">
+            <summary>
+            Retrieves a product based on  an Id
+            </summary>
+            <param name="id">The Id Of the product to retrieve</param>
+            <returns>An ActionResult containing the product</returns>
+        </member>
+        <member name="M:API.Controllers.ProductsController.GetProductBrands(System.Int32)">
+            <summary>
+             Retrieves a list of products by brand
+            </summary>
+            <param name="id">Brand Id</param>
+            <returns>An ActionResult containing a list of ProductBrand</returns>
+        </member>
+        <member name="M:API.Controllers.ProductsController.GetProductTypes(System.Int32)">
+            <summary>
+            Retrieves a list products by type
+            </summary>
+            <param name="id">Type Id</param>
+            <returns>An ActionResult containing a list of ProductBrand</returns>
+        </member>
+        <member name="M:API.Extentions.ClaimsPrincipalExtensions.RetrieveEmailFromPricipal(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            An extension method for ClaimsPrincipal
+            </summary>
+            <param name="user">ClaimsPrincipal that represent the info about logged in user</param>
+            <returns>A string that represent the email of the user</returns>
+        </member>
+    </members>
+</doc>

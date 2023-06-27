@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>API</name>
+    </assembly>
+    <members>
+        <member name="M:API.Controllers.ProductsController.GetProducts(Core.Specifications.ProductSpecParams)">
+            <summary>
+            Retrieves a paginated list of products based on the specified parameters.
+            </summary>
+            <param name="productParams">The parameters for filtering, sorting, and paging the products.</param>
+            <returns>An ActionResult containing the paginated list of products.</returns>
+        </member>
+    </members>
+</doc>

@@ -5,6 +5,7 @@ using StackExchange.Redis;
 
 namespace Infrastructure.Data
 {
+    
     public class BasketRepository : IBasketRepository
     {   
         private readonly IDatabase _database;
@@ -24,7 +25,6 @@ namespace Infrastructure.Data
             return data.IsNullOrEmpty ? null : JsonSerializer.Deserialize<CustomerBasket>(data);  
         }
 
-        //will use this method to update or create 
         public async Task<CustomerBasket> UpdateBasketAsync(CustomerBasket basket)
         {   
             //we'll keep the baskets hanging around 30 days
