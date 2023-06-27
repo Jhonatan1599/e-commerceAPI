@@ -28,6 +28,18 @@
         <member name="M:Infrastructure.Data.Migrations.Postgresinitial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
+        <member name="T:Infrastructure.Data.Migrations.SeedDataV2">
+            <inheritdoc />
+        </member>
+        <member name="M:Infrastructure.Data.Migrations.SeedDataV2.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Infrastructure.Data.Migrations.SeedDataV2.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Infrastructure.Data.Migrations.SeedDataV2.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
         <member name="T:Infrastructure.Data.SpecificationEvaluator`1">
             <summary>
             Provides a mechanism to evaluate specifications and retrieve the corresponding query.
