@@ -4,7 +4,7 @@
     "Name": "Air Jordan 1",
     "Description": "Classic basketball shoes with a retro design.",
     "Price": 189.99,
-    "PictureUrl": "images/products/Air-Jordan",
+    "PictureUrl": "images/products/Air-Jordan.png",
     "ProductTypeId": 1,
     "ProductBrandId": 1
   },
@@ -12,7 +12,7 @@
     "Name": "iPhone 13 Pro",
     "Description": "The latest flagship smartphone from Apple with an advanced camera system.",
     "Price": 1099.99,
-    "PictureUrl": "images/products/iPhone-13-Pro",
+    "PictureUrl": "images/products/iPhone-13-Pro.png",
     "ProductTypeId": 2,
     "ProductBrandId": 3
   },
@@ -20,7 +20,7 @@
     "Name": "Ultra Boost",
     "Description": "Comfortable running shoes with responsive cushioning.",
     "Price": 149.99,
-    "PictureUrl": "images/products/Ultra-Boost",
+    "PictureUrl": "images/products/Ultra-Boost.png",
     "ProductTypeId": 1,
     "ProductBrandId": 2
   }
