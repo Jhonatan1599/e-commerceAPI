@@ -23,7 +23,7 @@ app.UseMiddleware<ExceptionMiddleware>();
 // Redirects to "erros/code"  when the endpoint was not found
 app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
    app.UseSwaggerDocumentation();
 }
