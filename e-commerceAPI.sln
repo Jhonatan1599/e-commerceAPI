@@ -11,6 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BFEA7732-7C38-43F2-8B51-41E2A017F243}"
 	ProjectSection(SolutionItems) = preProject
+		captain-definition = captain-definition
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
