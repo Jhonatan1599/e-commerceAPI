@@ -48,6 +48,7 @@ var identityContext = services.GetRequiredService<AppIdentityDbContext>();
 var userManager = services.GetRequiredService<UserManager<AppUser>>();
 
 
+logger.LogInformation($"environment {app.Environment.EnvironmentName}");
 try
 {   
     //Seeding data to store
@@ -60,7 +61,7 @@ try
 
 }
 catch(Exception ex)
-{
+{   
     logger.LogError(ex, "An error occurred during migration");
 }
 
